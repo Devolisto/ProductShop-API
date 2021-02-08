@@ -4,7 +4,8 @@
     "password": "654321",
     "database": "productshop_db",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "logging": false
   },
   "test": {
     "username": "root",
