@@ -10,13 +10,24 @@ const app = express();
 app.use(express.json());
 app.use("/products",productRoutes);
 
+// Not found middleware
+app.use((req, res, next) => {
+    next({
+        status: 404,
+        message: "Path not found"
+    });
+});
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+    res.status(err.status || 500).json({message: err.message || "Internal Server Error"});
+});
 
 db.sequelize.sync({alter: true});
 // db.sequelize.sync({force: true});
 
 app.listen(8000, () => {
-    console.log("hey thereeeeeeee")
+    console.log("hey thereeeeeeee");
 })
 
 
